@@ -6,6 +6,7 @@ import os
 # # First-party Imports
 from employee import Employee
 from user_interface import UserInterface
+from utils import CSVProcessor
 
 
 def main(*args):
@@ -36,16 +37,34 @@ def main(*args):
     #     my_employee.apply_percentage_raise(50)
     #     print(my_employee)
 
+    # Make instance of UserInterface class.
     ui = UserInterface()
+
+    # Make instance of CSV processor class.
+    csv_processor = CSVProcessor()
 
     # We can make a list and add instances of employees to it.
     employees = []
-    employees.append(Employee("David", "Barnes", 853.00))
-    employees.append(Employee("James", "Kirk", 463.00))
-    employees.append(Employee("Jean-Luc", "Picard", 9999.00))
-    employees.append(Employee("Benjamin", "Sisko", 123456.00))
-    employees.append(Employee("Kathryn", "Janeway", 123.00))
-    employees.append(Employee("Charles", "McGill", 346.00))
+    # employees.append(Employee("David", "Barnes", 853.00))
+    # employees.append(Employee("James", "Kirk", 463.00))
+    # employees.append(Employee("Jean-Luc", "Picard", 9999.00))
+    # employees.append(Employee("Benjamin", "Sisko", 123456.00))
+    # employees.append(Employee("Kathryn", "Janeway", 123.00))
+    # employees.append(Employee("Charles", "McGill", 346.00))
+
+    # Path to CSV file
+    # path_to_csv_file = "../cis226-inclass-1-robertdepweg/employees.csv"
+    path_to_csv_file = "employees.csv"
+
+    # Reading the CSV file could raise exceptions. Be sure to catch them.
+    try:
+        # Call the import_csv method sending in out path to the csv
+        # and the Employee list that needs to be populated
+        csv_processor.import_csv(path_to_csv_file, employees)
+    except FileNotFoundError:
+        ui.print_file_not_found_error()
+    except EOFError:
+        ui.print_empty_file_error()
 
     # Get some input from the user
     selection = ui.display_menu_and_get_response()

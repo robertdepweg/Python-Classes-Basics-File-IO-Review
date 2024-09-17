@@ -40,6 +40,14 @@ class UserInterface:
         print(f"{'First Name':<10} {'Last Name':<20} {'Weekly Salary':>14}")
         print(output_list)
 
+    def print_file_not_found_error(self):
+        """Display file not found error"""
+        print("ERROR: File not found for opening.\n")
+
+    def print_empty_file_error(self):
+        """Display empty file error"""
+        print("ERROR: The file was unexpectedly empty.{os.linesep}\n")
+
     def _print_menu(self):
         """Print menu to user"""
         print("What would you like to do?")
@@ -52,9 +60,8 @@ class UserInterface:
 
     def _print_menu_error(self):
         """Print menu choice error"""
-        print("This is not a valid entry")
-        print("Please make a valid choice")
-        print()
+        print("This is not a valid entry.")
+        print("Please make a valid choice.\n")
 
     def _selection_is_valid(self, selection):
         """Verify selection is valid"""
